@@ -18,7 +18,7 @@ const tourSchema = new mongoose.Schema({
     },
     maxGroupSize:{
         type: Number,
-        required: [true, 'Atour must have a group size']
+        required: [true, 'A tour must have a group size']
     },
     difficulty:{
         type: String,
@@ -57,6 +57,13 @@ const tourSchema = new mongoose.Schema({
         select: false
     },
     startDates: [Date]
+}, {
+    toJSON:{ virtuals: true},
+    toObject:{ virtuals: true}
+})
+
+tourSchema.virtual('durationWeeks').get(function(){
+    return this.duration / 7;
 })
 
 const Tour = mongoose.model('tour', tourSchema)
