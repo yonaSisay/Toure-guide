@@ -7,7 +7,7 @@ const sendErrorDev = (err, res)=>{
     })
 }
 
-const sendErrorProd = (err, res) =>{
+const sendErrorProd = (rr, res) =>{
     // Operational Error
     if(err.isOperational){
             res.status(err.statusCode).json({
